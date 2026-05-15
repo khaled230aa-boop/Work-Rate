@@ -17,26 +17,21 @@
     <div class="header-container">
       <div class="header-left">
         <div class="fimro-logo">
-          <img src="img/logo.png" alt="Arena Logo" class="arena-logo-img">
-          
+          <img src="https://lh3.googleusercontent.com/d/1kmqg7E5cAjwtPMwEzkIIg51gtZG55UwRiWZJBVr7d7E" alt="Arena Logo" class="arena-logo-img">
+          <span class="arena-text">Arena</span>
         </div>
-        <nav class="header-nav">
+        <nav class="header-nav mobile-hide">
           <a href="#" data-en="Explore" data-ar="استكشاف">Explore</a>
           <a href="#" data-en="Contact" data-ar="اتصال">Contact</a>
           <a href="#" data-en="Resources" data-ar="المصادر">Resources</a>
         </nav>
       </div>
       <div class="header-right">
-        <div class="header-search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Search Workvivo..." data-en-placeholder="Search Workvivo..." data-ar-placeholder="ابحث عن Workvivo...">
-        </div>
-        <div class="header-icons">
-          <i class="fa-solid fa-th"></i>
-          <i class="fa-solid fa-bell"></i>
-          <div class="header-profile-img">
-            <img src="https://i.pravatar.cc/150?u=khalid" alt="Profile">
-          </div>
+        <div class="header-lang-toggle">
+          <button class="lang-toggle-btn" onclick="toggleLanguage()">
+            <i class="fa-solid fa-globe"></i>
+            <span id="lang-label">EN</span>
+          </button>
         </div>
       </div>
     </div>
@@ -54,8 +49,8 @@
     </div>
     <div class="login-glass-card">
       <div class="login-logo-creative">
-        <img src="img/logo.png" alt="Arena Logo">
-        
+        <img src="https://lh3.googleusercontent.com/d/1kmqg7E5cAjwtPMwEzkIIg51gtZG55UwRiWZJBVr7d7E" alt="Arena Logo">
+        <h1 class="arena-text-white">Arena</h1>
         <p class="arena-sub-white" data-en="Breathing life into space" data-ar="بث الحياة في المكان">Breathing life into space</p>
       </div>
       <form class="login-form-creative" onsubmit="return false;">
@@ -128,11 +123,13 @@
                 </div>
                 <div class="form-group mt-20">
                   <select class="fimro-select" id="target-dropdown">
-                    <option value="">Choose...</option>
+                    <option value="" data-en="Choose..." data-ar="اختر...">Choose...</option>
                   </select>
                 </div>
                 <div class="step-actions">
-                  <button type="button" class="btn btn-fimro-next" onclick="nextStep(2)">Next <i class="fa-solid fa-arrow-right"></i></button>
+                  <button type="button" class="btn btn-fimro-next" onclick="nextStep(2)">
+                    <span data-en="Next" data-ar="التالي">Next</span> <i class="fa-solid fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
 
@@ -160,8 +157,12 @@
                   </div>
                 </div>
                 <div class="step-actions">
-                  <button type="button" class="btn btn-fimro-prev" onclick="nextStep(1)"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                  <button type="button" class="btn btn-fimro-next" onclick="nextStep(3)">Next <i class="fa-solid fa-arrow-right"></i></button>
+                  <button type="button" class="btn btn-fimro-prev" onclick="nextStep(1)">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-en="Back" data-ar="السابق">Back</span>
+                  </button>
+                  <button type="button" class="btn btn-fimro-next" onclick="nextStep(3)">
+                    <span data-en="Next" data-ar="التالي">Next</span> <i class="fa-solid fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
 
@@ -172,8 +173,12 @@
                   <textarea class="fimro-textarea" id="eval-comment" rows="5" placeholder="Write your mandatory feedback here..." data-en-placeholder="Write your mandatory feedback here..." data-ar-placeholder="اكتب ملاحظاتك الإجبارية هنا..."></textarea>
                 </div>
                 <div class="step-actions">
-                  <button type="button" class="btn btn-fimro-prev" onclick="nextStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                  <button type="button" class="btn btn-fimro-primary" id="submit-btn" onclick="submitEvaluation()">Submit Evaluation</button>
+                  <button type="button" class="btn btn-fimro-prev" onclick="nextStep(2)">
+                    <i class="fa-solid fa-arrow-left"></i> <span data-en="Back" data-ar="السابق">Back</span>
+                  </button>
+                  <button type="button" class="btn btn-fimro-primary" id="submit-btn" onclick="submitEvaluation()">
+                    <span data-en="Submit Evaluation" data-ar="إرسال التقييم">Submit Evaluation</span>
+                  </button>
                 </div>
               </div>
 
@@ -190,20 +195,27 @@
             <p data-en="What's happening today in Arena?" data-ar="ماذا يحدث اليوم في Arena؟">What's happening today in Arena?</p>
           </div>
           <div class="hero-stats">
-            <div class="h-stat"><span id="total-evals-count">0</span><label>Total</label></div>
-            <div class="h-stat"><span id="pending-evals-count">0</span><label>Pending</label></div>
+            <div class="h-stat"><span id="total-evals-count">0</span><label data-en="Total" data-ar="الإجمالي">Total</label></div>
+            <div class="h-stat"><span id="pending-evals-count">0</span><label data-en="Pending" data-ar="معلق">Pending</label></div>
           </div>
         </div>
 
         <div class="admin-tabs-fimro">
-          <button class="tab-btn active" onclick="switchAdminTab('pending')">Pending</button>
-          <button class="tab-btn" onclick="switchAdminTab('completed')">Completed</button>
+          <button class="tab-btn active" onclick="switchAdminTab('pending')" data-en="Pending" data-ar="المعلقة">Pending</button>
+          <button class="tab-btn" onclick="switchAdminTab('completed')" data-en="Completed" data-ar="المكتملة">Completed</button>
         </div>
 
         <div class="card table-card-fimro">
           <table class="fimro-table">
             <thead>
-              <tr><th>Date</th><th>Target</th><th>Score</th><th>Comment</th><th>Status</th><th>Actions</th></tr>
+              <tr>
+                <th data-en="Date" data-ar="التاريخ">Date</th>
+                <th data-en="Target" data-ar="الهدف">Target</th>
+                <th data-en="Score" data-ar="النتيجة">Score</th>
+                <th data-en="Comment" data-ar="الملاحظة">Comment</th>
+                <th data-en="Status" data-ar="الحالة">Status</th>
+                <th data-en="Actions" data-ar="الإجراءات">Actions</th>
+              </tr>
             </thead>
             <tbody id="admin-eval-table-body"></tbody>
           </table>
@@ -221,10 +233,10 @@
         <div class="card settings-card-fimro">
           <h2 data-en="Configuration" data-ar="الإعدادات">Configuration</h2>
           <div class="form-group">
-            <label>Google Script URL</label>
+            <label data-en="Google Script URL" data-ar="رابط Google Script">Google Script URL</label>
             <input type="text" class="fimro-input" id="script-url" />
           </div>
-          <button class="btn btn-fimro-primary" onclick="saveScriptUrl()">Save</button>
+          <button class="btn btn-fimro-primary" onclick="saveScriptUrl()" data-en="Save" data-ar="حفظ">Save</button>
         </div>
       </section>
 
@@ -264,7 +276,7 @@
       const q2 = document.querySelector('input[name="q2"]:checked')?.value;
 
       if (!target || !q1 || !q2 || !comment) {
-        alert('Please complete all steps!');
+        alert(document.documentElement.getAttribute('data-lang') === 'ar' ? 'يرجى إكمال جميع الخطوات!' : 'Please complete all steps!');
         return;
       }
 
@@ -281,7 +293,7 @@
 
       try {
         await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
-        alert('Submitted successfully!');
+        alert(document.documentElement.getAttribute('data-lang') === 'ar' ? 'تم الإرسال بنجاح!' : 'Submitted successfully!');
         document.getElementById('evaluation-form').reset();
         nextStep(1);
       } catch (e) { alert('Error!'); } finally { btn.disabled = false; }
@@ -344,7 +356,10 @@
 
     function switchAdminTab(tab) {
       currentAdminTab = tab;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(tab)));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        const isMatch = b.getAttribute('onclick').includes(tab);
+        b.classList.toggle('active', isMatch);
+      });
       renderAdminTable();
     }
 
@@ -353,14 +368,21 @@
     function updateEvalTargetUI() {
       const target = document.querySelector('input[name="eval-target"]:checked').value;
       const dropdown = document.getElementById('target-dropdown');
-      dropdown.innerHTML = '<option value="">Choose...</option>';
+      const lang = document.documentElement.getAttribute('data-lang');
+      dropdown.innerHTML = `<option value="">${lang === 'ar' ? 'اختر...' : 'Choose...'}</option>`;
       if (target === 'employee') ['Aisha Williams', 'Marcus Kim', 'Ravi Patel', 'Sofia Larsen', 'Tom Chen'].forEach(e => dropdown.add(new Option(e, e)));
       else ['Engineering', 'Design', 'Marketing', 'Finance', 'HR'].forEach(d => dropdown.add(new Option(d, d)));
     }
     function setLanguage(lang) {
       document.documentElement.setAttribute('data-lang', lang);
       document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-      document.querySelectorAll('[data-en][data-ar]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
+      document.getElementById('lang-label').textContent = lang.toUpperCase();
+      document.querySelectorAll('[data-en][data-ar]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
+        else el.textContent = text;
+      });
+      updateEvalTargetUI();
     }
     function toggleLanguage() { setLanguage(document.documentElement.getAttribute('data-lang') === 'en' ? 'ar' : 'en'); }
     function showPage(id) { document.querySelectorAll('.page').forEach(p => p.classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }

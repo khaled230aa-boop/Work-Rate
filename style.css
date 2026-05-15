@@ -336,3 +336,72 @@ body { background: var(--fimro-bg); color: var(--fimro-text); overflow-x: hidden
 .btn-creative-login:hover i {
   transform: translateX(5px);
 }
+
+/* ── MOBILE OPTIMIZATION & HEADER SIMPLIFICATION ── */
+.header-lang-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.lang-toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.2s;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .mobile-hide { display: none !important; }
+  
+  .fimro-main { margin-left: 0; margin-right: 0; padding: 20px 15px; padding-bottom: 80px; }
+  [dir="rtl"] .fimro-main { margin-right: 0; }
+  
+  .fimro-sidebar {
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    top: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    border-right: none;
+    border-top: 1px solid var(--fimro-border);
+    z-index: 1000;
+  }
+  [dir="rtl"] .fimro-sidebar { border-left: none; }
+  
+  .sidebar-icon.logout { margin-top: 0; }
+  
+  .dashboard-hero { flex-direction: column; text-align: center; gap: 20px; padding: 25px; }
+  .hero-stats { width: 100%; justify-content: space-around; }
+  
+  .multistep-card { padding: 25px 20px; }
+  .eval-options-grid-fimro { grid-template-columns: 1fr; }
+  
+  .login-glass-card { padding: 40px 25px; margin: 15px; }
+  .arena-text-white { font-size: 28px; }
+  
+  .fimro-table th:nth-child(1), .fimro-table td:nth-child(1),
+  .fimro-table th:nth-child(4), .fimro-table td:nth-child(4) { display: none; } /* Hide date and comment on mobile table */
+  
+  .eval-grid-fimro { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .arena-text { font-size: 18px; }
+  .arena-logo-img { height: 24px; }
+  .header-container { padding: 0 10px; }
+}
