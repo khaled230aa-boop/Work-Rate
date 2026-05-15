@@ -155,3 +155,184 @@ body { background: var(--fimro-bg); color: var(--fimro-text); overflow-x: hidden
 .login-form .form-group { margin-bottom: 15px; }
 .login-form input { width: 100%; padding: 14px; border: 1px solid var(--fimro-border); border-radius: 12px; outline: none; }
 .btn-fimro-primary { width: 100%; margin-top: 20px; }
+
+/* ── CREATIVE LOGIN PAGE (MESH GRADIENT & GLASSMORPHISM) ── */
+.login-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0a0c;
+}
+
+.mesh-gradient-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+  filter: blur(80px);
+  opacity: 0.7;
+}
+
+.mesh-ball {
+  position: absolute;
+  border-radius: 50%;
+  animation: meshMove 20s infinite alternate ease-in-out;
+}
+
+.ball-1 { width: 500px; height: 500px; background: #6d28d9; top: -10%; left: -10%; animation-duration: 25s; }
+.ball-2 { width: 600px; height: 600px; background: #1d4ed8; bottom: -10%; right: -10%; animation-duration: 30s; }
+.ball-3 { width: 400px; height: 400px; background: #7c3aed; top: 40%; left: 30%; animation-duration: 20s; }
+.ball-4 { width: 450px; height: 450px; background: #2563eb; bottom: 20%; left: 10%; animation-duration: 28s; }
+
+@keyframes meshMove {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, 50px) scale(1.1); }
+  100% { transform: translate(-50px, 100px) scale(0.9); }
+}
+
+.login-glass-card {
+  position: relative;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  padding: 60px 50px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.login-logo-creative img {
+  width: 60px;
+  filter: brightness(0) invert(1);
+  margin-bottom: 15px;
+}
+
+.arena-text-white {
+  color: white;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
+}
+
+.arena-sub-white {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.login-form-creative {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.input-group-creative {
+  position: relative;
+  text-align: left;
+}
+
+.input-group-creative input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 18px 20px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group-creative label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.input-group-creative input:focus,
+.input-group-creative input:not(:placeholder-shown) {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input-group-creative input:focus + label,
+.input-group-creative input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 12px;
+  font-size: 12px;
+  color: white;
+  background: #1a1a1e;
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.login-lang-toggle-white {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.lang-btn-white {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.lang-btn-white:hover { color: white; }
+.lang-sep-white { color: rgba(255, 255, 255, 0.2); }
+
+.btn-creative-login {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 16px;
+  padding: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.btn-creative-login:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  background: #f0f0f0;
+}
+
+.btn-creative-login i {
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.btn-creative-login:hover i {
+  transform: translateX(5px);
+}

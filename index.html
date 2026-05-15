@@ -18,9 +18,13 @@
       <div class="header-left">
         <div class="fimro-logo">
           <img src="img/logo.png" alt="Arena Logo" class="arena-logo-img">
-        
+          
         </div>
-       
+        <nav class="header-nav">
+          <a href="#" data-en="Explore" data-ar="استكشاف">Explore</a>
+          <a href="#" data-en="Contact" data-ar="اتصال">Contact</a>
+          <a href="#" data-en="Resources" data-ar="المصادر">Resources</a>
+        </nav>
       </div>
       <div class="header-right">
         <div class="header-search">
@@ -42,25 +46,35 @@
        LOGIN PAGE
   ═══════════════════════════════════════════ -->
   <div class="page login-page" id="page-login">
-    <div class="login-card-fimro">
-      <div class="login-header-fimro">
-        <h1 data-en="Welcome to Arena" data-ar="مرحباً بك في Arena">Welcome to Arena</h1>
-        <p data-en="Please sign in to continue" data-ar="يرجى تسجيل الدخول للمتابعة">Please sign in to continue</p>
+    <div class="mesh-gradient-bg">
+      <div class="mesh-ball ball-1"></div>
+      <div class="mesh-ball ball-2"></div>
+      <div class="mesh-ball ball-3"></div>
+      <div class="mesh-ball ball-4"></div>
+    </div>
+    <div class="login-glass-card">
+      <div class="login-logo-creative">
+        <img src="img/logo.png" alt="Arena Logo">
+        
+        <p class="arena-sub-white" data-en="Breathing life into space" data-ar="بث الحياة في المكان">Breathing life into space</p>
       </div>
-      <form class="login-form" onsubmit="return false;">
-        <div class="form-group">
-          <input type="email" id="email" placeholder="Email Address" data-en-placeholder="Email Address" data-ar-placeholder="البريد الإلكتروني" />
+      <form class="login-form-creative" onsubmit="return false;">
+        <div class="input-group-creative">
+          <input type="email" id="email" required placeholder=" " />
+          <label data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
         </div>
-        <div class="form-group">
-          <input type="password" id="password" placeholder="Password" data-en-placeholder="Password" data-ar-placeholder="كلمة المرور" />
+        <div class="input-group-creative">
+          <input type="password" id="password" required placeholder=" " />
+          <label data-en="Password" data-ar="كلمة المرور">Password</label>
         </div>
-        <div class="login-lang-toggle">
-          <button type="button" class="lang-btn" onclick="setLanguage('en')">English</button>
-          <span class="lang-sep">|</span>
-          <button type="button" class="lang-btn" onclick="setLanguage('ar')">العربية</button>
+        <div class="login-lang-toggle-white">
+          <button type="button" class="lang-btn-white" onclick="setLanguage('en')">English</button>
+          <span class="lang-sep-white">|</span>
+          <button type="button" class="lang-btn-white" onclick="setLanguage('ar')">العربية</button>
         </div>
-        <button type="button" class="btn btn-fimro-primary" onclick="handleLogin()">
+        <button type="button" class="btn-creative-login" onclick="handleLogin()">
           <span data-en="Sign In" data-ar="تسجيل الدخول">Sign In</span>
+          <i class="fa-solid fa-arrow-right"></i>
         </button>
       </form>
     </div>
