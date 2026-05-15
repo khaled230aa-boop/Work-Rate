@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arena — Premium Evaluation Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="role-admin" id="body-root">
+
+  <!-- ═══════════════════════════════════════════
+       FIMRO STYLE HEADER (BLACK)
+  ═══════════════════════════════════════════ -->
+  <header class="fimro-header">
+    <div class="header-container">
+      <div class="header-left">
+        <div class="fimro-logo">
+          <img src="img/logo.png" alt="Arena Logo" class="arena-logo-img">
+        
+        </div>
+       
+      </div>
+      <div class="header-right">
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search Workvivo..." data-en-placeholder="Search Workvivo..." data-ar-placeholder="ابحث عن Workvivo...">
+        </div>
+        <div class="header-icons">
+          <i class="fa-solid fa-th"></i>
+          <i class="fa-solid fa-bell"></i>
+          <div class="header-profile-img">
+            <img src="https://i.pravatar.cc/150?u=khalid" alt="Profile">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       LOGIN PAGE
+  ═══════════════════════════════════════════ -->
+  <div class="page login-page" id="page-login">
+    <div class="login-card-fimro">
+      <div class="login-header-fimro">
+        <h1 data-en="Welcome to Arena" data-ar="مرحباً بك في Arena">Welcome to Arena</h1>
+        <p data-en="Please sign in to continue" data-ar="يرجى تسجيل الدخول للمتابعة">Please sign in to continue</p>
+      </div>
+      <form class="login-form" onsubmit="return false;">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email Address" data-en-placeholder="Email Address" data-ar-placeholder="البريد الإلكتروني" />
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Password" data-en-placeholder="Password" data-ar-placeholder="كلمة المرور" />
+        </div>
+        <div class="login-lang-toggle">
+          <button type="button" class="lang-btn" onclick="setLanguage('en')">English</button>
+          <span class="lang-sep">|</span>
+          <button type="button" class="lang-btn" onclick="setLanguage('ar')">العربية</button>
+        </div>
+        <button type="button" class="btn btn-fimro-primary" onclick="handleLogin()">
+          <span data-en="Sign In" data-ar="تسجيل الدخول">Sign In</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN APP SHELL
+  ═══════════════════════════════════════════ -->
+  <div class="app-shell hidden" id="app-shell">
+    
+    <!-- SIDEBAR (FIMRO STYLE) -->
+    <aside class="fimro-sidebar">
+      <a href="#" class="sidebar-icon active" onclick="switchSection('dashboard')" title="Dashboard"><i class="fa-solid fa-house"></i></a>
+      <a href="#" class="sidebar-icon" onclick="switchSection('evaluations')" title="Evaluations"><i class="fa-solid fa-star"></i></a>
+      <a href="#" class="sidebar-icon" onclick="switchSection('submit-eval')" title="Submit"><i class="fa-solid fa-pen-to-square"></i></a>
+      <a href="#" class="sidebar-icon" onclick="switchSection('settings')" title="Settings"><i class="fa-solid fa-gear"></i></a>
+      <a href="#" class="sidebar-icon logout" onclick="showPage('page-login')" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+    </aside>
+
+    <main class="fimro-main">
+      
+      <!-- ══ SECTION: MULTI-STEP EVALUATION ══ -->
+      <section class="content-section" id="section-submit-eval">
+        <div class="multistep-container">
+          <div class="multistep-header">
+            <div class="progress-bar-container">
+              <div class="progress-fill" id="form-progress" style="width: 33%;"></div>
+            </div>
+            <div class="steps-indicator">
+              <span class="step-dot active">1</span>
+              <span class="step-dot">2</span>
+              <span class="step-dot">3</span>
+            </div>
+          </div>
+
+          <div class="card multistep-card">
+            <form id="evaluation-form" onsubmit="return false;">
+              
+              <!-- STEP 1: TARGET -->
+              <div class="form-step active" id="step-1">
+                <h2 data-en="Who are you evaluating?" data-ar="من تريد أن تقيم؟">Who are you evaluating?</h2>
+                <div class="eval-options-grid-fimro">
+                  <label class="fimro-opt">
+                    <input type="radio" name="eval-target" value="employee" checked onchange="updateEvalTargetUI()" />
+                    <div class="opt-box"><i class="fa-solid fa-user"></i><span data-en="Employee" data-ar="موظف">Employee</span></div>
+                  </label>
+                  <label class="fimro-opt">
+                    <input type="radio" name="eval-target" value="department" onchange="updateEvalTargetUI()" />
+                    <div class="opt-box"><i class="fa-solid fa-building"></i><span data-en="Department" data-ar="قسم">Department</span></div>
+                  </label>
+                </div>
+                <div class="form-group mt-20">
+                  <select class="fimro-select" id="target-dropdown">
+                    <option value="">Choose...</option>
+                  </select>
+                </div>
+                <div class="step-actions">
+                  <button type="button" class="btn btn-fimro-next" onclick="nextStep(2)">Next <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- STEP 2: QUALITY -->
+              <div class="form-step" id="step-2">
+                <h2 data-en="Quality & Performance" data-ar="الجودة والأداء">Quality & Performance</h2>
+                <div class="quality-item">
+                  <label data-en="Quality of work delivered?" data-ar="جودة العمل المقدم؟">Quality of work delivered?</label>
+                  <div class="fimro-stars">
+                    <input type="radio" name="q1" value="5" id="f-q1-5"><label for="f-q1-5">★</label>
+                    <input type="radio" name="q1" value="4" id="f-q1-4"><label for="f-q1-4">★</label>
+                    <input type="radio" name="q1" value="3" id="f-q1-3"><label for="f-q1-3">★</label>
+                    <input type="radio" name="q1" value="2" id="f-q1-2"><label for="f-q1-2">★</label>
+                    <input type="radio" name="q1" value="1" id="f-q1-1"><label for="f-q1-1">★</label>
+                  </div>
+                </div>
+                <div class="quality-item">
+                  <label data-en="Leadership and initiative?" data-ar="القيادة والمبادرة؟">Leadership and initiative?</label>
+                  <div class="fimro-stars">
+                    <input type="radio" name="q2" value="5" id="f-q2-5"><label for="f-q2-5">★</label>
+                    <input type="radio" name="q2" value="4" id="f-q2-4"><label for="f-q2-4">★</label>
+                    <input type="radio" name="q2" value="3" id="f-q2-3"><label for="f-q2-3">★</label>
+                    <input type="radio" name="q2" value="2" id="f-q2-2"><label for="f-q2-2">★</label>
+                    <input type="radio" name="q2" value="1" id="f-q2-1"><label for="f-q2-1">★</label>
+                  </div>
+                </div>
+                <div class="step-actions">
+                  <button type="button" class="btn btn-fimro-prev" onclick="nextStep(1)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                  <button type="button" class="btn btn-fimro-next" onclick="nextStep(3)">Next <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+              </div>
+
+              <!-- STEP 3: FEEDBACK -->
+              <div class="form-step" id="step-3">
+                <h2 data-en="Final Feedback" data-ar="الملاحظات النهائية">Final Feedback</h2>
+                <div class="form-group">
+                  <textarea class="fimro-textarea" id="eval-comment" rows="5" placeholder="Write your mandatory feedback here..." data-en-placeholder="Write your mandatory feedback here..." data-ar-placeholder="اكتب ملاحظاتك الإجبارية هنا..."></textarea>
+                </div>
+                <div class="step-actions">
+                  <button type="button" class="btn btn-fimro-prev" onclick="nextStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                  <button type="button" class="btn btn-fimro-primary" id="submit-btn" onclick="submitEvaluation()">Submit Evaluation</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ SECTION: DASHBOARD ══ -->
+      <section class="content-section" id="section-dashboard">
+        <div class="dashboard-hero">
+          <div class="hero-content">
+            <h1 data-en="Hello, Khalid!" data-ar="مرحباً، خالد!">Hello, Khalid!</h1>
+            <p data-en="What's happening today in Arena?" data-ar="ماذا يحدث اليوم في Arena؟">What's happening today in Arena?</p>
+          </div>
+          <div class="hero-stats">
+            <div class="h-stat"><span id="total-evals-count">0</span><label>Total</label></div>
+            <div class="h-stat"><span id="pending-evals-count">0</span><label>Pending</label></div>
+          </div>
+        </div>
+
+        <div class="admin-tabs-fimro">
+          <button class="tab-btn active" onclick="switchAdminTab('pending')">Pending</button>
+          <button class="tab-btn" onclick="switchAdminTab('completed')">Completed</button>
+        </div>
+
+        <div class="card table-card-fimro">
+          <table class="fimro-table">
+            <thead>
+              <tr><th>Date</th><th>Target</th><th>Score</th><th>Comment</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="admin-eval-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══ SECTION: EVALUATIONS GRID ══ -->
+      <section class="content-section" id="section-evaluations">
+        <h2 class="section-title-fimro" data-en="Approved Feedback" data-ar="الملاحظات المعتمدة">Approved Feedback</h2>
+        <div class="eval-grid-fimro" id="public-eval-grid"></div>
+      </section>
+
+      <!-- Settings -->
+      <section class="content-section" id="section-settings">
+        <div class="card settings-card-fimro">
+          <h2 data-en="Configuration" data-ar="الإعدادات">Configuration</h2>
+          <div class="form-group">
+            <label>Google Script URL</label>
+            <input type="text" class="fimro-input" id="script-url" />
+          </div>
+          <button class="btn btn-fimro-primary" onclick="saveScriptUrl()">Save</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    let SCRIPT_URL = localStorage.getItem('arena_script_url') || '';
+    let evaluations = [];
+    let currentAdminTab = 'pending';
+    let currentUser = { role: 'admin', name: 'Khalid' };
+
+    function handleLogin() {
+      const email = document.getElementById('email').value.toLowerCase();
+      currentUser = email.includes('admin') ? { role: 'admin', name: 'Admin', initials: 'AD' } : { role: 'user', name: 'Employee', initials: 'EM' };
+      document.getElementById('body-root').className = 'role-' + currentUser.role;
+      updateUserUI();
+      fetchFromGoogleSheets();
+      showPage('app-shell');
+      switchSection(currentUser.role === 'admin' ? 'dashboard' : 'submit-eval');
+    }
+
+    function nextStep(step) {
+      document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step-' + step).classList.add('active');
+      document.getElementById('form-progress').style.width = (step * 33.33) + '%';
+      document.querySelectorAll('.step-dot').forEach((d, i) => {
+        if (i < step) d.classList.add('active');
+        else d.classList.remove('active');
+      });
+    }
+
+    async function submitEvaluation() {
+      const comment = document.getElementById('eval-comment').value.trim();
+      const target = document.getElementById('target-dropdown').value;
+      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+
+      if (!target || !q1 || !q2 || !comment) {
+        alert('Please complete all steps!');
+        return;
+      }
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      const data = {
+        action: 'submit',
+        date: new Date().toLocaleString(),
+        targetName: target,
+        avgScore: ((parseInt(q1) + parseInt(q2)) / 2).toFixed(1),
+        comment: comment,
+        status: 'Pending'
+      };
+
+      try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) });
+        alert('Submitted successfully!');
+        document.getElementById('evaluation-form').reset();
+        nextStep(1);
+      } catch (e) { alert('Error!'); } finally { btn.disabled = false; }
+    }
+
+    async function fetchFromGoogleSheets() {
+      if (!SCRIPT_URL) return;
+      try {
+        const response = await fetch(`${SCRIPT_URL}?action=get`);
+        evaluations = await response.json();
+        renderAdminTable();
+        renderPublicGrid();
+      } catch (e) { console.error(e); }
+    }
+
+    async function updateStatus(index, newStatus) {
+      const ev = evaluations[index];
+      try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: 'update', date: ev.date, status: newStatus }) });
+        setTimeout(fetchFromGoogleSheets, 1000);
+      } catch (e) { console.error(e); }
+    }
+
+    function renderAdminTable() {
+      const tbody = document.getElementById('admin-eval-table-body');
+      if (!tbody) return;
+      const filtered = evaluations.filter(ev => currentAdminTab === 'pending' ? ev.status === 'Pending' : ev.status !== 'Pending');
+      tbody.innerHTML = filtered.map((ev, idx) => {
+        const originalIdx = evaluations.indexOf(ev);
+        return `
+          <tr>
+            <td>${ev.date}</td><td>${ev.targetName}</td><td>${ev.avgScore} ★</td>
+            <td class="td-comment">${ev.comment}</td>
+            <td><span class="status-pill ${ev.status}">${ev.status}</span></td>
+            <td>
+              ${ev.status === 'Pending' ? `
+                <button class="btn-action approve" onclick="updateStatus(${originalIdx}, 'Approved')"><i class="fa-solid fa-check"></i></button>
+                <button class="btn-action reject" onclick="updateStatus(${originalIdx}, 'Rejected')"><i class="fa-solid fa-xmark"></i></button>
+              ` : '<i class="fa-solid fa-circle-check"></i>'}
+            </td>
+          </tr>
+        `;
+      }).join('');
+      document.getElementById('total-evals-count').textContent = evaluations.length;
+      document.getElementById('pending-evals-count').textContent = evaluations.filter(e => e.status === 'Pending').length;
+    }
+
+    function renderPublicGrid() {
+      const grid = document.getElementById('public-eval-grid');
+      if (!grid) return;
+      const approved = evaluations.filter(e => e.status === 'Approved');
+      grid.innerHTML = approved.map(ev => `
+        <div class="fimro-card-eval">
+          <div class="eval-header"><h3>${ev.targetName}</h3><span>${ev.avgScore} ★</span></div>
+          <p>"${ev.comment}"</p>
+          <div class="eval-footer">${ev.date}</div>
+        </div>
+      `).join('');
+    }
+
+    function switchAdminTab(tab) {
+      currentAdminTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(tab)));
+      renderAdminTable();
+    }
+
+    function saveScriptUrl() { SCRIPT_URL = document.getElementById('script-url').value; localStorage.setItem('arena_script_url', SCRIPT_URL); alert('Saved!'); }
+    function updateUserUI() { document.getElementById('script-url').value = SCRIPT_URL; }
+    function updateEvalTargetUI() {
+      const target = document.querySelector('input[name="eval-target"]:checked').value;
+      const dropdown = document.getElementById('target-dropdown');
+      dropdown.innerHTML = '<option value="">Choose...</option>';
+      if (target === 'employee') ['Aisha Williams', 'Marcus Kim', 'Ravi Patel', 'Sofia Larsen', 'Tom Chen'].forEach(e => dropdown.add(new Option(e, e)));
+      else ['Engineering', 'Design', 'Marketing', 'Finance', 'HR'].forEach(d => dropdown.add(new Option(d, d)));
+    }
+    function setLanguage(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      document.querySelectorAll('[data-en][data-ar]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
+    }
+    function toggleLanguage() { setLanguage(document.documentElement.getAttribute('data-lang') === 'en' ? 'ar' : 'en'); }
+    function showPage(id) { document.querySelectorAll('.page').forEach(p => p.classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); }
+    function switchSection(name) {
+      document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('section-' + name).classList.add('active');
+      document.querySelectorAll('.sidebar-icon').forEach(i => i.classList.remove('active'));
+      const icon = document.querySelector(`.sidebar-icon[onclick*="${name}"]`);
+      if (icon) icon.classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => { updateEvalTargetUI(); });
+  </script>
+</body>
+</html>

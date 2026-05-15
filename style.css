@@ -1,0 +1,157 @@
+:root {
+  --fimro-black: #0f1113;
+  --fimro-dark: #1a1d21;
+  --fimro-accent: #1d4ed8;
+  --fimro-bg: #f8fafc;
+  --fimro-border: #e2e8f0;
+  --fimro-text: #334155;
+  --r-lg: 16px;
+  --r-md: 10px;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --fimro-bg: #0f1113;
+  --fimro-text: #f1f5f9;
+  --fimro-border: #334155;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Noto Sans Arabic', sans-serif; }
+body { background: var(--fimro-bg); color: var(--fimro-text); overflow-x: hidden; }
+.hidden { display: none !important; }
+
+/* ── FIMRO HEADER ── */
+.fimro-header {
+  background: var(--fimro-black);
+  color: white;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; }
+.header-left, .header-right { display: flex; align-items: center; gap: 30px; }
+.fimro-logo { display: flex; align-items: center; gap: 10px; }
+.arena-logo-img { height: 32px; filter: brightness(0) invert(1); }
+.arena-text { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+.header-nav { display: flex; gap: 20px; }
+.header-nav a { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.2s; }
+.header-nav a:hover { color: white; }
+
+.header-search { background: #2d333b; border-radius: 8px; padding: 6px 12px; display: flex; align-items: center; gap: 10px; width: 300px; }
+.header-search input { background: none; border: none; color: white; font-size: 13px; width: 100%; outline: none; }
+.header-icons { display: flex; align-items: center; gap: 20px; font-size: 18px; color: #94a3b8; }
+.header-profile-img img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #3b82f6; }
+
+/* ── SIDEBAR ── */
+.fimro-sidebar {
+  width: 70px;
+  background: white;
+  border-right: 1px solid var(--fimro-border);
+  height: calc(100vh - 60px);
+  position: fixed;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 25px;
+}
+[dir="rtl"] .fimro-sidebar { left: auto; right: 0; border-right: none; border-left: 1px solid var(--fimro-border); }
+.sidebar-icon { font-size: 20px; color: #94a3b8; text-decoration: none; transition: 0.2s; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+.sidebar-icon.active { background: rgba(29, 78, 216, 0.1); color: var(--fimro-accent); }
+.sidebar-icon:hover { color: var(--fimro-accent); }
+.sidebar-icon.logout { margin-top: auto; color: #ef4444; }
+
+/* ── MAIN CONTENT ── */
+.fimro-main { margin-left: 70px; padding: 40px; min-height: 100vh; }
+[dir="rtl"] .fimro-main { margin-left: 0; margin-right: 70px; }
+.content-section { display: none; animation: fadeIn 0.4s ease; }
+.content-section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── MULTI-STEP FORM ── */
+.multistep-container { max-width: 700px; margin: 0 auto; }
+.multistep-header { margin-bottom: 30px; }
+.progress-bar-container { height: 6px; background: var(--fimro-border); border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+.progress-fill { height: 100%; background: var(--fimro-accent); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+.steps-indicator { display: flex; justify-content: space-between; }
+.step-dot { width: 30px; height: 30px; border-radius: 50%; background: white; border: 2px solid var(--fimro-border); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #94a3b8; }
+.step-dot.active { border-color: var(--fimro-accent); color: var(--fimro-accent); box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1); }
+
+.multistep-card { background: white; padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--fimro-border); box-shadow: var(--shadow); }
+.form-step { display: none; }
+.form-step.active { display: block; animation: slideIn 0.3s ease; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+.form-step h2 { font-size: 24px; font-weight: 800; margin-bottom: 25px; color: var(--fimro-black); }
+.eval-options-grid-fimro { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.fimro-opt input { display: none; }
+.opt-box { border: 2px solid var(--fimro-border); border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: 0.2s; }
+.fimro-opt input:checked + .opt-box { border-color: var(--fimro-accent); background: rgba(29, 78, 216, 0.05); color: var(--fimro-accent); }
+.opt-box i { font-size: 24px; margin-bottom: 10px; display: block; }
+.opt-box span { font-weight: 600; font-size: 14px; }
+
+.fimro-select, .fimro-input, .fimro-textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--fimro-border); border-radius: 10px; font-size: 14px; outline: none; transition: 0.2s; }
+.fimro-select:focus, .fimro-input:focus, .fimro-textarea:focus { border-color: var(--fimro-accent); box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1); }
+
+.quality-item { margin-bottom: 25px; }
+.quality-item label { display: block; font-weight: 600; margin-bottom: 10px; font-size: 15px; }
+.fimro-stars { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 5px; }
+.fimro-stars input { display: none; }
+.fimro-stars label { font-size: 30px; color: #cbd5e1; cursor: pointer; transition: 0.2s; }
+.fimro-stars input:checked ~ label, .fimro-stars label:hover, .fimro-stars label:hover ~ label { color: #f59e0b; }
+
+.step-actions { display: flex; justify-content: space-between; margin-top: 30px; }
+.btn { padding: 12px 24px; border-radius: 10px; font-weight: 700; cursor: pointer; border: none; transition: 0.2s; font-size: 14px; }
+.btn-fimro-primary { background: var(--fimro-accent); color: white; }
+.btn-fimro-primary:hover { background: #1e40af; transform: translateY(-2px); }
+.btn-fimro-next { background: var(--fimro-black); color: white; margin-left: auto; }
+.btn-fimro-prev { background: var(--fimro-border); color: var(--fimro-text); }
+
+/* ── DASHBOARD ── */
+.dashboard-hero { background: white; padding: 40px; border-radius: var(--r-lg); border: 1px solid var(--fimro-border); display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.hero-content h1 { font-size: 32px; font-weight: 800; margin-bottom: 5px; }
+.hero-content p { color: #64748b; }
+.hero-stats { display: flex; gap: 40px; }
+.h-stat { text-align: center; }
+.h-stat span { display: block; font-size: 28px; font-weight: 800; color: var(--fimro-accent); }
+.h-stat label { font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; }
+
+.admin-tabs-fimro { display: flex; gap: 10px; margin-bottom: 20px; }
+.tab-btn { padding: 8px 20px; border-radius: 20px; border: 1px solid var(--fimro-border); background: white; font-weight: 600; cursor: pointer; font-size: 13px; }
+.tab-btn.active { background: var(--fimro-black); color: white; border-color: var(--fimro-black); }
+
+.table-card-fimro { background: white; border-radius: var(--r-lg); border: 1px solid var(--fimro-border); overflow: hidden; }
+.fimro-table { width: 100%; border-collapse: collapse; }
+.fimro-table th { background: #f8fafc; padding: 15px 20px; text-align: left; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; }
+[dir="rtl"] .fimro-table th { text-align: right; }
+.fimro-table td { padding: 15px 20px; border-top: 1px solid var(--fimro-border); font-size: 14px; }
+.td-comment { max-width: 300px; color: #64748b; font-size: 13px; }
+
+.status-pill { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.status-pill.Approved { background: #dcfce7; color: #166534; }
+.status-pill.Pending { background: #fef9c3; color: #854d0e; }
+.status-pill.Rejected { background: #fee2e2; color: #991b1b; }
+
+.btn-action { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; }
+.btn-action.approve { background: #dcfce7; color: #166534; }
+.btn-action.reject { background: #fee2e2; color: #991b1b; }
+
+/* ── EVAL GRID ── */
+.eval-grid-fimro { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.fimro-card-eval { background: white; padding: 25px; border-radius: var(--r-lg); border: 1px solid var(--fimro-border); box-shadow: var(--shadow); }
+.eval-header { display: flex; justify-content: space-between; margin-bottom: 15px; }
+.eval-header h3 { font-size: 16px; font-weight: 700; }
+.eval-header span { color: #f59e0b; font-weight: 800; }
+.fimro-card-eval p { font-style: italic; color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 15px; }
+.eval-footer { font-size: 11px; color: #94a3b8; text-align: right; }
+
+/* ── LOGIN ── */
+.login-page { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--fimro-black); }
+.login-card-fimro { background: white; padding: 50px; border-radius: 24px; width: 100%; max-width: 450px; text-align: center; }
+.login-header-fimro h1 { font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+.login-header-fimro p { color: #64748b; margin-bottom: 30px; }
+.login-form .form-group { margin-bottom: 15px; }
+.login-form input { width: 100%; padding: 14px; border: 1px solid var(--fimro-border); border-radius: 12px; outline: none; }
+.btn-fimro-primary { width: 100%; margin-top: 20px; }
